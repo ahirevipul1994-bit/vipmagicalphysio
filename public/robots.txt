@@ -1,0 +1,25 @@
+# robots.txt — VIP Magical Physio Clinic
+User-agent: *
+Allow: /
+
+# Private lead console — never indexed.
+Disallow: /admin.html
+
+# Draft ebook detail pages are excluded from search until the store is live.
+Disallow: /ebooks/
+
+Sitemap: https://vipmagicalphysio.netlify.app/sitemap.xml
+
+# Private account and transaction pages
+Disallow: /dashboard.html
+Disallow: /staff-dashboard.html
+Disallow: /doctor-dashboard.html
+Disallow: /login.html
+Disallow: /payment.html
+Disallow: /consultation-booking.html
+Disallow: /appointment-confirmation.html
+Disallow: /api/
+Disallow: /db/
+Disallow: /tools/
+Disallow: /tests/
+Disallow: /netlify/

@@ -17,13 +17,13 @@
   const lib = libMod.exports;
 
   // ---- evaluate data ----
-  const dataSrc = await load("assets/data.js");
+  const dataSrc = await load("public/assets/data.js");
   const sandboxWindow = {};
   new Function("window", dataSrc)(sandboxWindow);
   const { SITE, SERVICES } = sandboxWindow.PX_DATA;
 
   // ---- evaluate content ----
-  const contentSrc = await load("assets/content.js");
+  const contentSrc = await load("public/assets/content.js");
   new Function("window", contentSrc)(sandboxWindow);
   const { ARTICLES } = sandboxWindow.PX_CONTENT;
 
@@ -75,7 +75,7 @@
   // ---- write ----
   let bytes = 0;
   for (const r of results) {
-    await saveFile(r.path, r.html);
+    await saveFile("public/" + r.path, r.html);
     bytes += r.html.length;
   }
 
@@ -115,7 +115,7 @@ ${urls.map((u) => `  <url>
   </url>`).join("\n")}
 </urlset>
 `;
-  await saveFile("sitemap.xml", sitemap);
+  await saveFile("public/sitemap.xml", sitemap);
 
   const robots = `# robots.txt — VIP Magical Physio Clinic
 User-agent: *
@@ -129,14 +129,14 @@ Disallow: /ebooks/
 
 Sitemap: ${SITE.domain}/sitemap.xml
 `;
-  await saveFile("robots.txt", robots);
+  await saveFile("public/robots.txt", robots);
 
   const favicon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
   <rect width="64" height="64" rx="12" fill="#0B2239"/>
   <path d="M18 44V20h7.6l6.4 13.6L38.4 20H46v24h-6.6V31.4L34.4 44h-4.8l-5-12.6V44H18z" fill="#FBFAF7"/>
   <circle cx="32" cy="50.5" r="2.6" fill="#0B6E63"/>
 </svg>`;
-  await saveFile("assets/favicon.svg", favicon);
+  await saveFile("public/assets/favicon.svg", favicon);
 
   log("Pages written: " + results.length);
   log("Total bytes: " + Math.round(bytes / 1024) + " KB");

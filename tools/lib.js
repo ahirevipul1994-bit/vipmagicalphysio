@@ -88,6 +88,7 @@ function header(rel, active, SITE, SERVICES) {
       <span class="utility__note">Please call before visiting — appointments are booked in advance.</span>
     </div>
     <div class="utility__right">
+      <a href="${rel}dashboard.html">My dashboard</a>
       <a href="tel:${SITE.phoneIntl}">Call ${SITE.phoneDisplay}</a>
       <a href="${waLink("general")}" data-wa="general" target="_blank" rel="noopener">WhatsApp</a>
       <span class="utility__note">${SITE.locality}, ${SITE.region}</span>
@@ -159,6 +160,7 @@ function header(rel, active, SITE, SERVICES) {
     <li><a href="${rel}blog.html">Articles</a></li>
     <li><a href="${rel}resources.html">Free guides</a></li>
     <li><a href="${rel}faq.html">FAQ</a></li>
+<li><a href="${rel}doctors.html">Find an online doctor</a></li><li><a href="${rel}reviews.html">Patient reviews</a></li><li><a href="${rel}patient-guide.html">Patient guide</a></li><li><a href="${rel}doctor-partners.html">For doctors</a></li>
     <li><a href="${rel}contact.html">Contact</a></li>
   </ul>
   <div class="mobile-nav__cta">
@@ -208,6 +210,7 @@ function footer(rel, SITE, SERVICES) {
           <li><a href="${rel}online-consultation.html">Online consultation</a></li>
           <li><a href="${rel}contact.html">Contact &amp; location</a></li>
           <li><a href="${rel}faq.html">FAQ</a></li>
+<li><a href="${rel}doctors.html">Find an online doctor</a></li><li><a href="${rel}reviews.html">Patient reviews</a></li><li><a href="${rel}patient-guide.html">Patient guide</a></li><li><a href="${rel}doctor-partners.html">For doctors</a></li>
         </ul>
       </div>
 

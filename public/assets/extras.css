@@ -1,0 +1,87 @@
+/* =========================================================
+   ADDITIONS — consent bar, Google reviews, lead console
+   ========================================================= */
+
+/* ---------- Consent bar ---------- */
+.consent {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 190;
+  padding: 1rem var(--gutter) calc(1rem + env(safe-area-inset-bottom));
+  background: var(--c-surface);
+  border-top: var(--hair);
+  box-shadow: 0 -12px 40px -18px rgba(0,0,0,.28);
+  transform: translateY(102%);
+  transition: transform .34s var(--ease);
+}
+.consent[data-open="true"] { transform: none; }
+.consent__inner {
+  max-width: var(--shell); margin-inline: auto;
+  display: grid; grid-template-columns: 1fr auto;
+  gap: 1.6rem; align-items: center;
+}
+.consent__text {
+  font-size: var(--fs-xs); line-height: 1.6; color: var(--c-ink-soft);
+  max-width: 62ch; margin: 0;
+}
+.consent__text strong { color: var(--c-ink); }
+.consent__text a { text-decoration: underline; text-underline-offset: .18em; }
+.consent__actions { display: flex; gap: .6rem; flex-shrink: 0; align-items: center; }
+.consent__actions .btn { min-height: 46px; padding: .6rem 1.15rem; font-size: var(--fs-xs); white-space: nowrap; }
+body:has(.consent[data-open="true"]) .float { bottom: 118px; }
+@media (max-width: 860px) {
+  .consent__inner { grid-template-columns: 1fr; gap: .9rem; }
+  .consent__actions { display: grid; grid-template-columns: 1fr 1fr; }
+  body:has(.consent[data-open="true"]) .float { display: none; }
+}
+
+/* ---------- Google Business Profile panel ---------- */
+.gbp {
+  background: var(--c-surface);
+  border: var(--hair);
+  border-radius: var(--radius);
+  padding: var(--s-5);
+}
+.gbp__head { display: flex; gap: .8rem; align-items: center; }
+.gbp__logo {
+  width: 38px; height: 38px; flex: none; border-radius: 50%;
+  display: grid; place-items: center;
+  background: var(--c-surface); border: 1px solid var(--c-line);
+  font-family: var(--font-display); font-size: 1.15rem; font-weight: 700;
+  color: #4285F4;
+}
+.gbp__head strong { display: block; font-family: var(--font-display); font-size: 1.3rem; letter-spacing: -0.01em; line-height: 1.1; }
+.gbp__stars { display: flex; gap: .18rem; margin-top: .85rem; font-size: 1.15rem; line-height: 1; }
+.gbp__stars .star { color: var(--c-line); }
+.gbp__stars .star[data-on="true"] { color: #E8A33D; }
+.gbp--verified { border-color: color-mix(in srgb, var(--c-ok) 32%, var(--c-line)); }
+
+/* Compact variant used in the hero / aside */
+.gbp--compact { padding: var(--s-4); }
+.gbp--compact .gbp__head strong { font-size: 1.05rem; }
+
+/* ---------- Admin table helpers ---------- */
+.table-wrap table td .pill { white-space: nowrap; }
+#lead-body td, #event-body td { vertical-align: top; }
+code {
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: .82em;
+  background: var(--c-bg-2);
+  border: 1px solid var(--c-line-soft);
+  border-radius: 3px;
+  padding: .1em .35em;
+}
+
+/* Admin console: floating CTAs would cover the last table column. */
+body.admin-page .float { display: none !important; }
+.admin-page .table-wrap { max-width: 100%; }
+
+/* Keep navigation and language controls inside narrow phone viewports. */
+@media (max-width: 600px) {
+  .site-head__row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: .5rem 1rem; padding-block: .65rem; }
+  .site-head__row > .brand { min-width: 0; }
+  .head__actions { display: contents; }
+  .head__actions > .btn { display: none; }
+  .head__actions .lang { grid-column: 1; grid-row: 2; justify-self: start; }
+  .head__actions .burger { grid-column: 2; grid-row: 1 / 3; }
+  .brand__name { white-space: normal; }
+  .utility__right { gap: .5rem 1rem; }
+}
