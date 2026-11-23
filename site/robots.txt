@@ -1,0 +1,9 @@
+# robots.txt — VIP Magical Physio Clinic
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+Disallow: /tools/
+Disallow: /content/
+
+Sitemap: https://vipmagicalphysio.com/sitemap.xml
