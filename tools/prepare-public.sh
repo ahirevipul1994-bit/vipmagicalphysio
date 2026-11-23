@@ -1,10 +1,12 @@
 set -euo pipefail
 
 mkdir -p public
-cp -- ./*.html robots.txt sitemap.xml public/
-cp -R -- assets public/
+cp -- site/*.html site/robots.txt 404.html public/
+cp -R -- site/assets public/
+cp -- assets/content.js public/assets/
 
-for section in blog ebooks services; do
-  mkdir -p "public/$section"
-  cp -- "$section"/*.html "public/$section/"
-done
+cp -R -- site/blog site/ebooks public/
+mkdir -p public/services
+cp -- services/*.html public/services/
+
+node site/tools/build.js public

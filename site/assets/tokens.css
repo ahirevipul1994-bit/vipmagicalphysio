@@ -1,0 +1,124 @@
+/* =========================================================
+   VIP MAGICAL PHYSIO — DESIGN TOKENS
+   Two directions, one component layer.
+   A  "Clinical Calm"   — navy / teal / warm paper. Safe + authoritative.
+   B  "Warm Editorial"  — ink / terracotta / cream. Distinctive + memorable.
+   ========================================================= */
+
+/* ---------- Direction A : Clinical Calm ---------- */
+:root,
+[data-theme="a"] {
+  --c-ink:        #0B2239;
+  --c-ink-2:      #17364F;
+  --c-ink-soft:   #485F73;
+  --c-bg:         #FBFAF7;
+  --c-bg-2:       #F1EFE8;
+  --c-surface:    #FFFFFF;
+  --c-line:       #DCD7CC;
+  --c-line-soft:  #EAE6DC;
+  --c-primary:    #0B2239;
+  --c-primary-2:  #17364F;
+  --c-on-primary: #FFFFFF;
+  --c-support:    #0B6E63;   /* teal — clinical signal */
+  --c-support-soft:#E2EFEC;
+  --c-accent:     #B96F16;   /* marigold */
+  --c-accent-soft:#F7EAD6;
+  --c-alert:      #9A2B1E;
+  --c-alert-soft: #F8E6E2;
+  --c-ok:         #1F6B4A;
+
+  --shadow-sm: 0 1px 2px rgba(11,34,57,.06), 0 1px 1px rgba(11,34,57,.04);
+  --shadow-md: 0 10px 30px -12px rgba(11,34,57,.22), 0 2px 6px rgba(11,34,57,.05);
+  --shadow-lg: 0 30px 70px -34px rgba(11,34,57,.34);
+
+  --radius:    6px;
+  --radius-sm: 4px;
+  --radius-lg: 14px;
+  --radius-pill: 999px;
+
+  --font-display: "Newsreader", "Iowan Old Style", Georgia, serif;
+  --font-body: "Public Sans", -apple-system, "Segoe UI", sans-serif;
+  --display-weight: 400;
+  --display-tracking: -0.022em;
+  --eyebrow-tracking: .16em;
+
+  --hair: 1px solid var(--c-line);
+}
+
+/* ---------- Direction B : Warm Editorial ---------- */
+[data-theme="b"] {
+  --c-ink:        #1C1512;
+  --c-ink-2:      #38291F;
+  --c-ink-soft:   #5D4B3F;
+  --c-bg:         #F6F0E4;
+  --c-bg-2:       #EDE3D1;
+  --c-surface:    #FDFAF2;
+  --c-line:       #D7C7AF;
+  --c-line-soft:  #E7DAC6;
+  --c-primary:    #8A3B2C;
+  --c-primary-2:  #A64C39;
+  --c-on-primary: #FFF9F0;
+  --c-support:    #2F5D4E;
+  --c-support-soft:#DDE7DF;
+  --c-accent:     #C4881F;
+  --c-accent-soft:#F6E7C6;
+  --c-alert:      #8A2B1C;
+  --c-alert-soft: #F7E2DB;
+  --c-ok:         #2F5D4E;
+
+  --shadow-sm: 0 1px 2px rgba(28,21,18,.07);
+  --shadow-md: 0 12px 34px -14px rgba(28,21,18,.26);
+  --shadow-lg: 0 34px 80px -38px rgba(28,21,18,.38);
+
+  --radius:    3px;
+  --radius-sm: 2px;
+  --radius-lg: 8px;
+  --radius-pill: 999px;
+
+  --font-display: "Bitter", Georgia, serif;
+  --font-body: "Karla", -apple-system, "Segoe UI", sans-serif;
+  --display-weight: 600;
+  --display-tracking: -0.028em;
+  --eyebrow-tracking: .2em;
+
+  --hair: 1px solid var(--c-line);
+}
+
+/* ---------- Type scale (fluid, baseline large for 45–76) ---------- */
+:root {
+  --fs-micro: .75rem;
+  --fs-xs:    .8125rem;
+  --fs-sm:    .9375rem;
+  --fs-base:  1.0625rem;   /* 17px body floor */
+  --fs-md:    1.1875rem;
+  --fs-lg:    1.3125rem;
+  --fs-xl:    clamp(1.5rem, 1.15rem + 1.5vw, 2.125rem);
+  --fs-2xl:   clamp(1.95rem, 1.35rem + 2.5vw, 3.05rem);
+  --fs-3xl:   clamp(2.5rem, 1.5rem + 4.3vw, 4.4rem);
+  --fs-4xl:   clamp(2.9rem, 1.4rem + 6vw, 5.6rem);
+
+  --lh-tight: 1.06;
+  --lh-snug:  1.22;
+  --lh-body:  1.62;
+
+  --measure: 66ch;
+  --measure-tight: 52ch;
+
+  /* Spacing — 4pt base */
+  --s-1: .25rem; --s-2: .5rem;  --s-3: .75rem; --s-4: 1rem;
+  --s-5: 1.5rem; --s-6: 2rem;   --s-7: 2.5rem; --s-8: 3.25rem;
+  --s-9: 4rem;   --s-10: 5rem;  --s-11: 6.5rem; --s-12: 8rem;
+
+  --shell: 1240px;
+  --gutter: clamp(1.15rem, 4vw, 2.75rem);
+  --section-y: clamp(3.5rem, 6vw, 7rem);
+
+  --tap: 52px;
+  --ease: cubic-bezier(.22,.61,.36,1);
+
+  /* density tweak */
+  --density: 1;
+}
+
+[data-density="compact"] { --section-y: clamp(2.6rem, 4vw, 4.5rem); --lh-body: 1.52; }
+[data-density="roomy"]   { --section-y: clamp(4.5rem, 8vw, 9rem); }
