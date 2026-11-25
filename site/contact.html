@@ -253,7 +253,8 @@
         <p class="tiny muted" style="margin-top:1.2rem;line-height:1.6">Please do not send detailed medical information, reports or images through this form. Those are better discussed directly at an appointment.</p>
       </div>
 
-      <form class="form" data-enquiry data-form-kind="contact" style="background:var(--c-surface);border:var(--hair);border-radius:var(--radius-lg);padding:clamp(1.2rem,3vw,2rem);box-shadow:var(--shadow-md)">
+      <form class="form" method="post" data-enquiry data-form-kind="contact" style="background:var(--c-surface);border:var(--hair);border-radius:var(--radius-lg);padding:clamp(1.2rem,3vw,2rem);box-shadow:var(--shadow-md)">
+        <noscript><p>Please use the call or WhatsApp contact links to send an enquiry.</p></noscript>
         <div class="field">
           <label for="c-name">Your name</label>
           <input type="text" id="c-name" name="name" required autocomplete="name">
@@ -287,7 +288,7 @@
           </label>
           <span class="err">Please confirm consent.</span>
         </div>
-        <button class="btn btn--primary btn--lg btn--block" type="submit">Prepare WhatsApp message</button>
+        <button class="btn btn--primary btn--lg btn--block" type="submit" disabled>Prepare WhatsApp message</button>
         <p class="tiny muted" data-form-status aria-live="polite"></p>
       </form>
     </div>

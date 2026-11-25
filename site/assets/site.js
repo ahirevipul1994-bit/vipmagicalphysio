@@ -157,6 +157,7 @@
   function initEnquiryForms() {
     $$("form[data-enquiry]").forEach(function (form) {
       var status = $("[data-form-status]", form);
+      var submitButton = $('button[type="submit"]', form);
       form.addEventListener("submit", function (e) {
         e.preventDefault();
         var ok = validateForm(form);
@@ -168,15 +169,6 @@
         }
         var payload = readPayload(form);
         var text = buildWaFromForm(payload);
-        try { localStorage.setItem("px_last_enquiry", JSON.stringify({ at: Date.now(), payload: payload })); } catch (err) {}
-
-        // CRM capture: stored locally, and posted to a webhook if configured.
-        if (window.PXCRM) {
-          var kind = form.getAttribute("data-form-kind") || "enquiry";
-          window.PXCRM.addLead(window.PXCRM.makeLead(kind, payload));
-        } else {
-          window.dispatchEvent(new CustomEvent("px:capture", { detail: { kind: form.getAttribute("data-form-kind") || "enquiry", data: payload } }));
-        }
 
         if (status) {
           status.setAttribute("data-state", "success");
@@ -184,6 +176,7 @@
         }
         window.open(waLink("general", text), "_blank", "noopener");
       });
+      if (submitButton) submitButton.disabled = false;
     });
   }
 
@@ -224,8 +217,6 @@
   });
 
   /* ---------------- Booking wizard ---------------- */
-  var STORE = "px_booking_draft_v1";
-
   function initWizard() {
     var wiz = $("[data-wizard]");
     if (!wiz) return;
@@ -235,20 +226,6 @@
     var btnNext = $("[data-wiz-next]", wiz);
     var btnPrev = $("[data-wiz-prev]", wiz);
     var idx = 0;
-
-    var saved = null;
-    try { saved = JSON.parse(localStorage.getItem(STORE) || "null"); } catch (e) {}
-
-    if (saved && saved.values) {
-      Object.keys(saved.values).forEach(function (k) {
-        var nodes = $$('[name="' + k + '"]', wiz);
-        nodes.forEach(function (n) {
-          if (n.type === "radio" || n.type === "checkbox") n.checked = (n.value === saved.values[k]);
-          else n.value = saved.values[k];
-        });
-      });
-      if (typeof saved.idx === "number" && saved.idx > 0 && saved.idx < panes.length) idx = saved.idx;
-    }
 
     var dateInput = $('input[type="date"]', wiz);
     if (dateInput && !dateInput.value) {
@@ -266,10 +243,6 @@
         v[f.name] = f.value;
       });
       return v;
-    }
-
-    function save() {
-      try { localStorage.setItem(STORE, JSON.stringify({ idx: idx, values: collect(), at: Date.now() })); } catch (e) {}
     }
 
     function paneValid(i) {
@@ -309,7 +282,6 @@
         btnNext.textContent = "Continue →";
       }
       if (idx === panes.length - 1) renderReview();
-      save();
       var head = $(".wizard", wiz);
       if (head && head.getBoundingClientRect().top < 0) {
         var y = wiz.getBoundingClientRect().top + window.scrollY - 90;
@@ -360,35 +332,17 @@
         s.setAttribute("aria-pressed", "true");
         var hidden = $('input[name="time"]', wiz);
         if (hidden) hidden.value = s.getAttribute("data-value");
-        save();
       });
     });
 
     var form = $("form", wiz);
     if (form) {
+      var submitButton = $('button[type="submit"]', form);
       form.addEventListener("submit", function (e) {
         e.preventDefault();
-        if (!paneValid(idx)) return;
-        var payload = {
-          status: "requested",
-          submittedAt: new Date().toISOString(),
-          site: "VIP Magical Physio Clinic",
-          appointment: collect()
-        };
-        try {
-          localStorage.setItem("px_last_request", JSON.stringify(payload));
-          var all = JSON.parse(localStorage.getItem("px_requests") || "[]");
-          all.push(payload);
-          localStorage.setItem("px_requests", JSON.stringify(all.slice(-10)));
-        } catch (err) {}
-
-        // CRM capture for appointment requests.
-        var p2 = collect();
-        if (window.PXCRM) {
-          window.PXCRM.addLead(window.PXCRM.makeLead("booking", p2));
-        } else {
-          window.dispatchEvent(new CustomEvent("px:capture", { detail: { kind: "booking", data: p2 } }));
-        }
+        if (idx < panes.length - 1) { go(idx + 1, false); return; }
+        var invalidPane = panes.findIndex(function (pane, index) { return !paneValid(index); });
+        if (invalidPane !== -1) { go(invalidPane, true); return; }
 
         var done = $("[data-wiz-done]", wiz);
         var foot = $(".wizard__foot", wiz);
@@ -410,29 +364,13 @@
             waBtn.setAttribute("target", "_blank");
             waBtn.setAttribute("rel", "noopener");
           }
-          var pre = $("[data-payload]", done);
-          if (pre) pre.textContent = JSON.stringify(payload, null, 2);
+          done.focus();
         }
-        save();
       });
+      if (submitButton) submitButton.disabled = false;
     }
 
     go(idx, true);
-
-    var copyBtn = $("[data-copy-payload]");
-    if (copyBtn) {
-      copyBtn.addEventListener("click", function () {
-        var pre = $("[data-payload]");
-        if (!pre) return;
-        var txt = pre.textContent;
-        if (navigator.clipboard) {
-          navigator.clipboard.writeText(txt).then(function () {
-            copyBtn.textContent = "Copied";
-            setTimeout(function () { copyBtn.textContent = "Copy JSON"; }, 1800);
-          });
-        }
-      });
-    }
   }
 
   function escapeHtml(s) {

@@ -273,7 +273,8 @@
         </div>
       </div>
 
-      <form class="form" data-enquiry data-form-kind="home-visit" style="background:var(--c-surface);border:var(--hair);border-radius:var(--radius-lg);padding:clamp(1.2rem,3vw,2rem);box-shadow:var(--shadow-md)">
+      <form class="form" method="post" data-enquiry data-form-kind="home-visit" style="background:var(--c-surface);border:var(--hair);border-radius:var(--radius-lg);padding:clamp(1.2rem,3vw,2rem);box-shadow:var(--shadow-md)">
+        <noscript><p>Please use the call or WhatsApp contact links to ask about a home visit.</p></noscript>
         <div class="field">
           <label for="hv-name">Patient or family name</label>
           <input type="text" id="hv-name" name="name" required autocomplete="name">
@@ -301,7 +302,7 @@
           </label>
           <span class="err">Please confirm you agree to be contacted.</span>
         </div>
-        <button class="btn btn--primary btn--lg btn--block" type="submit">Request home visit</button>
+        <button class="btn btn--primary btn--lg btn--block" type="submit" disabled>Prepare home visit enquiry</button>
         <p class="tiny muted" data-form-status aria-live="polite"></p>
       </form>
     </div>
