@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Enquiry inbox preview | VIP Magical Physio</title>
+  <link rel="stylesheet" href="/assets/owner-preview.css">
+  <script src="/assets/owner-preview.js" defer></script>
+</head>
+<body>
+  <header class="top"><a href="/">VIP Magical Physio</a><span>Clinic workspace</span></header>
+  <main>
+    <header class="intro">
+      <p class="eyebrow">Team preview · Test data only</p>
+      <h1>Enquiry inbox</h1>
+      <p>Try the clinic’s request-to-follow-up workflow. Sample requests do not book appointments or send messages.</p>
+    </header>
+    <noscript><p>JavaScript is required to use this preview.</p></noscript>
+    <p class="feedback" id="feedback" role="status">Checking access to the preview inbox…</p>
+    <div class="workspace" id="workspace" hidden>
+      <section class="panel" aria-labelledby="start-heading">
+        <h2 id="start-heading">Add a sample request</h2>
+        <p>Use the preset options. Do not enter patient information.</p>
+        <form id="sample-form" method="post">
+          <fieldset id="sample-fields">
+            <legend class="sr-only">Sample appointment preferences</legend>
+            <label for="type">Appointment type</label>
+            <select id="type" name="type">
+              <option value="clinic">Clinic visit</option>
+              <option value="home">Home visit</option>
+              <option value="online">Online consultation</option>
+              <option value="followup">Follow-up</option>
+            </select>
+            <label for="language">Preferred language</label>
+            <select id="language" name="language">
+              <option value="en">English</option>
+              <option value="mr">Marathi</option>
+              <option value="hi">Hindi</option>
+            </select>
+            <button type="submit">Save sample enquiry</button>
+          </fieldset>
+        </form>
+      </section>
+      <section class="panel inbox" aria-labelledby="inbox-heading">
+        <header class="inbox-head">
+          <div><h2 id="inbox-heading">Recent requests</h2><p id="count"></p></div>
+          <button type="button" class="secondary" id="refresh">Refresh</button>
+        </header>
+        <p id="empty" hidden>No samples yet. Add one to test the inbox.</p>
+        <ul id="enquiries"></ul>
+      </section>
+    </div>
+    <p class="scope">For real enquiries, use the clinic’s existing phone or WhatsApp options.</p>
+  </main>
+</body>
+</html>
