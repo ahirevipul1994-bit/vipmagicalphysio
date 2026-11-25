@@ -1,0 +1,14 @@
+{
+  "name": "vip-magical-physio",
+  "private": true,
+  "scripts": {
+    "test": "node --test"
+  },
+  "dependencies": {
+    "@netlify/database": "^2.0.4",
+    "@netlify/server": "^0.1.6"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "^0.2.17"
+  }
+}

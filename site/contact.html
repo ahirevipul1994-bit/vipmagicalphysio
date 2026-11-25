@@ -253,7 +253,7 @@
         <p class="tiny muted" style="margin-top:1.2rem;line-height:1.6">Please do not send detailed medical information, reports or images through this form. Those are better discussed directly at an appointment.</p>
       </div>
 
-      <form class="form" data-enquiry data-form-kind="contact" style="background:var(--c-surface);border:var(--hair);border-radius:var(--radius-lg);padding:clamp(1.2rem,3vw,2rem);box-shadow:var(--shadow-md)">
+      <form method="post" class="form" data-enquiry data-form-kind="contact" style="background:var(--c-surface);border:var(--hair);border-radius:var(--radius-lg);padding:clamp(1.2rem,3vw,2rem);box-shadow:var(--shadow-md)">
         <div class="field">
           <label for="c-name">Your name</label>
           <input type="text" id="c-name" name="name" required autocomplete="name">
@@ -277,8 +277,9 @@
           <span class="err">Please choose an enquiry type.</span>
         </div>
         <div class="field">
-          <label for="c-msg">Message <span class="hint" style="display:inline">(optional)</span></label>
-          <textarea id="c-msg" name="reason" rows="3" placeholder="A short note about what you need."></textarea>
+          <label for="c-msg">Callback note <span class="hint" style="display:inline">(optional)</span></label>
+          <textarea id="c-msg" name="reason" rows="3" maxlength="200" placeholder="For example: please call in the afternoon."></textarea>
+          <span class="hint">Do not include medical details.</span>
         </div>
         <div class="field">
           <label class="check">
@@ -390,10 +391,10 @@
 <script src="assets/config.js?v=20261116e"></script>
 <script src="assets/data.js?v=20261116e"></script>
 <script src="assets/i18n.js?v=20261116e"></script>
-<script src="assets/crm.js?v=20261116e"></script>
+<script src="assets/crm.js?v=20261125"></script>
 <script src="assets/gbp.js?v=20261116e"></script>
 <script src="assets/analytics.js?v=20261116e"></script>
-<script src="assets/site.js?v=20261116e"></script>
+<script src="assets/site.js?v=20261125"></script>
 <script src="assets/tweaks.js?v=20261116e"></script>
 </body>
 </html>

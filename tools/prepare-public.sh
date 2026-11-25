@@ -9,4 +9,5 @@ cp -R -- site/blog site/ebooks public/
 mkdir -p public/services
 cp -- services/*.html public/services/
 
+rm -rf -- public/en/conditions public/mr/conditions public/hi/conditions
 node site/tools/build.js public

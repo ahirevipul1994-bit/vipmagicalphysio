@@ -273,7 +273,7 @@
         </div>
       </div>
 
-      <form class="form" data-enquiry data-form-kind="home-visit" style="background:var(--c-surface);border:var(--hair);border-radius:var(--radius-lg);padding:clamp(1.2rem,3vw,2rem);box-shadow:var(--shadow-md)">
+      <form method="post" class="form" data-enquiry data-form-kind="home-visit" style="background:var(--c-surface);border:var(--hair);border-radius:var(--radius-lg);padding:clamp(1.2rem,3vw,2rem);box-shadow:var(--shadow-md)">
         <div class="field">
           <label for="hv-name">Patient or family name</label>
           <input type="text" id="hv-name" name="name" required autocomplete="name">
@@ -291,8 +291,9 @@
           <span class="err">Please tell us the area.</span>
         </div>
         <div class="field">
-          <label for="hv-reason">Main difficulty <span class="hint" style="display:inline">(optional)</span></label>
-          <textarea id="hv-reason" name="reason" rows="3" placeholder="e.g. Cannot manage stairs after knee replacement; mother is 74 and unsteady."></textarea>
+          <label for="hv-reason">Scheduling note <span class="hint" style="display:inline">(optional)</span></label>
+          <textarea id="hv-reason" name="reason" rows="3" maxlength="200" placeholder="For example: please call to discuss timing."></textarea>
+          <span class="hint">Do not include medical details.</span>
         </div>
         <div class="field">
           <label class="check">
@@ -484,10 +485,10 @@
 <script src="assets/config.js?v=20261116e"></script>
 <script src="assets/data.js?v=20261116e"></script>
 <script src="assets/i18n.js?v=20261116e"></script>
-<script src="assets/crm.js?v=20261116e"></script>
+<script src="assets/crm.js?v=20261125"></script>
 <script src="assets/gbp.js?v=20261116e"></script>
 <script src="assets/analytics.js?v=20261116e"></script>
-<script src="assets/site.js?v=20261116e"></script>
+<script src="assets/site.js?v=20261125"></script>
 <script src="assets/tweaks.js?v=20261116e"></script>
 </body>
 </html>

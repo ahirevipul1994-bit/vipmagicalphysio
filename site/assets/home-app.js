@@ -52,11 +52,13 @@
   const SVC = window.VIP_SERVICES || {};
   const qp = new URLSearchParams(location.search);
   var pendingService = qp.get('service') || '';
-  const condHref = slug => `/${lang}/conditions/${slug}/`;
+  const condHref = slug => SVC[slug]?.published === true
+    ? `/${lang}/conditions/${slug}/`
+    : `/services/${slug === 'posture-correction' ? 'posture-correction-ergonomics' : slug}.html`;
   function renderConds() {
     const el = $('#conds'); if (!el) return;
     el.innerHTML = CONDS.map(([k, slug]) =>
-      `<a class="cond" href="${condHref(slug)}"><h3>${t(k)}</h3><p>${t(k + '_p')}</p><span class="go">${t('learn')}</span></a>`).join('');
+      `<a class="cond" href="${condHref(slug)}"><h3>${t(k)}</h3><span class="go">${t('learn')}</span></a>`).join('');
     document.querySelectorAll('[data-href-conds]').forEach(a => a.href = `/${lang}/conditions/`);
   }
 

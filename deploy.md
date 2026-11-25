@@ -1,5 +1,7 @@
 # DEPLOY.md — VIP Magical Physio Clinic
 
+> Historical handoff for the legacy root site. For the active Netlify deployment and the current Release 1 checklist, use [the Release 1 handover](docs/release-1.md). The browser/Google Sheets CRM instructions below are retired; do not use them for clinic data.
+
 Everything needed to take this site live, plus the two integrations that need your accounts: **analytics** and **CRM**.
 
 ---

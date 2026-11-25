@@ -3,7 +3,7 @@
    - Generates /{en,mr,hi}/conditions/** from site/content/conditions.*.js
    - Generates /{en,mr,hi}/index.html from the homepage with per-language canonical/hreflang/title
    - Writes sitemap.xml + assets/services-index.js
-   - Keeps condition pages out of the index and sitemap until clinically reviewed. */
+   - Publishes condition detail pages only after dated clinical review in every language. */
 const fs = require('fs'), path = require('path'), vm = require('vm');
 const SITE_DIR = path.resolve(__dirname, '..');
 const OUTPUT_DIR = path.resolve(process.argv[2] || 'public');
