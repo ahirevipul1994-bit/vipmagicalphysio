@@ -1,0 +1,28 @@
+# VIP MAGICAL PHYSIO — source archive and MVP handoff
+
+**Audit date:** 25 November 2026. **Release status:** candidate for review; not deployed or approved for production by this work.
+
+## Using the archive
+
+Extract the ZIP into a new folder. It contains the active static-site sources, multilingual content inputs, published assets, Netlify configuration, and the scripts used to assemble the deployment. `site/` is the main source; `services/`, `404.html`, and `assets/content.js` are additional deployment inputs. Netlify's existing configuration assembles these into `public/`. The ZIP is source, not a drag-and-drop build or a backup of a database, user accounts, WhatsApp messages, or payments. Keep it in private project storage: it contains draft content as well as public content.
+
+## Initial audit
+
+| Module | Status | Evidence and limitation | Improvement / risk |
+|---|---|---|---|
+| Hosting and domain | Working in HTTP checks | The custom HTTPS domain and the Netlify hostname both returned 200. The published site predates the changes in this archive. | Preserve the existing setup. Verify DNS ownership and deployment approvals separately. |
+| Public routes and SEO | Partially verified | About, services, booking, contact, home visit, online consultation, e-books, privacy, sitemap, and robots returned 200. | Check mobile, keyboard, accessibility, metadata, search indexing, and performance in a preview. A valid response is not proof that the contents or interactions work. |
+| Languages | Partially working | English, Hindi, and Marathi home routes returned 200. Templates and translations are edited in source; they are not an owner-editable translation CMS. | Confirm translation parity and clinician sign-off. Condition generation uses `noindex` for unapproved content, but `noindex` does not prevent access. Gate publication itself before releasing unreviewed clinical material. |
+| Enquiries and booking | WhatsApp-only; revised in this source | Earlier public handlers saved personal details in browser storage and forwarded a local CRM event. Revised handlers prepare the same WhatsApp handoff without saving new personal details or firing the legacy CRM capture. | Confirm call and WhatsApp ownership, clinic launch status, and service availability. Browser storage from prior versions has not been erased. There is no slot reservation, acknowledgement, automatic confirmation, or verified delivery. |
+| Administration and data | Missing in active source / external state unverified | Both admin paths returned 404. The repository snapshot has no active authenticated admin, database migrations, or patient-access policies. Legacy JavaScript is not a working CRM. | Confirm what existing Identity and database instances contain before planning changes. Do not treat their presence as evidence of configured roles, RLS, consent controls, or recoverability. |
+| Clinical workspace, portal, Recovery Passport | Missing in active source | No authenticated clinical or patient workflow was found in the active deployment inputs. | Release only after permission isolation, audit history, clinical review, and restore tests pass using synthetic data. |
+| Commerce, automation, AI | Missing or unverified | A public e-book catalogue exists; no verified checkout, signed payment processing, protected fulfilment, background notifications, or reviewed AI assistant was established. | Require separately approved integrations and staging acceptance before money, health data, or patient messages are handled. |
+| Security and resilience | Partial / untested | Existing Netlify configuration sets basic response headers. A pre-edit source snapshot passed archive integrity testing, but no production data backup or restore was verified. | Verify live access controls, data retention, compliance, backups, costs, and recovery with the owner before collecting data server-side. |
+
+## Validation and next gate
+
+JavaScript syntax, shell syntax, and diff checks passed. Synthetic runtime checks confirmed that invalid contact details do not open WhatsApp, valid details prepare a message, booking does not open WhatsApp automatically, prior steps are required, and neither tested handler accesses browser storage or the legacy CRM. No real patient information was used and no WhatsApp messages were sent. These checks are not browser, delivery, accessibility, or release acceptance tests.
+
+Review a preview on desktop and mobile. With dummy inputs, use the booking wizard, contact form, and home visit form; stop at the WhatsApp composer without sending. Confirm the booking remains marked “Not yet sent,” prior validation errors block the handoff, and refreshing does not restore a site-created draft. Verify keyboard focus, check the contact and language links, and obtain owner and clinician sign-off on the public claims, service availability, and review status of clinical content. No new paid service was introduced; current account charges and future operating costs were not verified. No release score was assigned because the production gates were not run.
+
+The next phase should establish the authorized database and Identity baselines in staging before adding persistent lead capture or scheduling. Confirm the existing provider and ownership, map records and roles, approve a backup and retention plan, and verify the applicable Indian privacy and professional requirements before handling patient data. No migrations, production settings changes, or notifications were made. To roll back the code candidate if needed, restore the prior known-good source revision; if the candidate is later deployed, use the previous approved Netlify deploy after confirming it is appropriate to reintroduce the prior browser-storage behaviour.

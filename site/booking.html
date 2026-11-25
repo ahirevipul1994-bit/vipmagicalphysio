@@ -182,7 +182,7 @@
 
         <div class="callout" style="margin-top:1.6rem">
           <span class="callout__label">How this works</span>
-          This form does not book a slot in real time — there is no automated calendar connected. It creates a <strong>request</strong>, which we confirm by phone. Your details are not stored on a server; the form prepares a WhatsApp message for you to send.
+          The date and time you choose are preferences, not reserved slots. The form prepares a WhatsApp message; the clinic does not receive a request until you send it.
         </div>
 
         <div class="panel" style="margin-top:1.4rem">
@@ -214,7 +214,8 @@
           <div class="wizard__step" data-state="todo"><b>4</b><span>Review</span></div>
         </div>
 
-        <form novalidate>
+        <noscript><p>Please call or use the WhatsApp contact link to request an appointment.</p></noscript>
+        <form method="post" novalidate>
           <div class="wizard__body">
 
             <!-- STEP 1 -->
@@ -337,31 +338,25 @@
 
               <div class="callout" style="margin-top:1.3rem">
                 <span class="callout__label">Privacy</span>
-                This form does not send your details to a server. When you submit, your request is saved only in this browser and a WhatsApp message is prepared for you to review and send yourself.
+                The website does not save your request as a draft. Review the prepared message in WhatsApp before sending, and do not include medical reports or detailed clinical history.
               </div>
 
-              <button class="btn btn--primary btn--lg btn--block" type="submit" style="margin-top:1.2rem">Send appointment request</button>
+              <button class="btn btn--primary btn--lg btn--block" type="submit" style="margin-top:1.2rem" disabled>Prepare WhatsApp request</button>
             </div>
 
             <!-- DONE -->
-            <div data-wiz-done style="display:none">
+            <div data-wiz-done tabindex="-1" style="display:none">
               <div style="display:flex;align-items:center;gap:.7rem;margin-bottom:.6rem">
-                <span class="pill pill--soon">Status: requested</span>
+                <span class="pill pill--soon">Not yet sent</span>
               </div>
               <h2 class="h-3" style="margin-bottom:.6rem">Your request is ready.</h2>
-              <p class="small muted" style="line-height:1.6;margin-bottom:1.1rem">Send it on WhatsApp so we receive it immediately, or call the clinic. We will confirm a time once we have checked availability.</p>
+              <p class="small muted" style="line-height:1.6;margin-bottom:1.1rem">Open WhatsApp to review and send the message, or call the clinic. No appointment is confirmed until the clinic checks availability and replies.</p>
 
               <div class="btn-row">
-                <a class="btn btn--wa btn--lg" data-wiz-wa href="#" target="_blank" rel="noopener">Send on WhatsApp</a>
+                <a class="btn btn--wa btn--lg" data-wiz-wa href="#" target="_blank" rel="noopener">Open WhatsApp</a>
                 <a class="btn btn--ghost btn--lg" href="tel:+918624860808">Call 86248 60808</a>
               </div>
 
-              <details style="margin-top:1.6rem">
-                <summary class="small" style="cursor:pointer;font-weight:700">Developer: view request payload</summary>
-                <p class="tiny muted" style="margin:.6rem 0">This JSON is the shape a future backend endpoint should accept. It is currently stored in localStorage only.</p>
-                <pre data-payload class="mono" style="background:var(--c-bg-2);padding:1rem;border-radius:var(--radius);overflow:auto;font-size:.7rem;line-height:1.5"></pre>
-                <button type="button" class="btn btn--ghost" data-copy-payload style="margin-top:.6rem">Copy JSON</button>
-              </details>
             </div>
 
           </div>
