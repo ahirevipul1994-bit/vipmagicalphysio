@@ -1,5 +1,7 @@
 # DEPLOY.md — VIP Magical Physio Clinic
 
+> Historical notes for the retired static website. See `README.md` for the current deployment and owner workspace.
+
 Everything needed to take this site live, plus the two integrations that need your accounts: **analytics** and **CRM**.
 
 ---

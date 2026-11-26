@@ -1,10 +1,115 @@
 [build]
-  command = "bash tools/prepare-public.sh"
-  publish = "public"
+command = "pnpm build"
+publish = "dist/public"
+
+[build.environment]
+NODE_VERSION = "24"
+
+[[redirects]]
+from = "/booking"
+to = "/book"
+status = 301
+
+[[redirects]]
+from = "/faq"
+to = "/faqs"
+status = 301
+
+[[redirects]]
+from = "/home-visit"
+to = "/services/home-visit-physiotherapy"
+status = 301
+
+[[redirects]]
+from = "/online-consultation"
+to = "/services/online-consultation"
+status = 301
+
+[[redirects]]
+from = "/privacy-policy"
+to = "/privacy"
+status = 301
+
+[[redirects]]
+from = "/refund-policy"
+to = "/refund"
+status = 301
+
+[[redirects]]
+from = "/medical-disclaimer"
+to = "/terms"
+status = 301
+
+[[redirects]]
+from = "/resources"
+to = "/blog"
+status = 301
+
+[[redirects]]
+from = "/blog/:slug"
+to = "/blog"
+status = 301
+
+[[redirects]]
+from = "/ebooks/:slug"
+to = "/ebooks"
+status = 301
+
+[[redirects]]
+from = "/services/orthopaedic-rehabilitation"
+to = "/services/orthopaedic-physiotherapy"
+status = 301
+
+[[redirects]]
+from = "/services/online-physiotherapy-consultation"
+to = "/services/online-consultation"
+status = 301
+
+[[redirects]]
+from = "/services/stroke-rehabilitation"
+to = "/services/neurological-rehabilitation"
+status = 301
+
+[[redirects]]
+from = "/services/back-pain-physiotherapy"
+to = "/services/orthopaedic-physiotherapy"
+status = 301
+
+[[redirects]]
+from = "/services/knee-pain-physiotherapy"
+to = "/services/orthopaedic-physiotherapy"
+status = 301
+
+[[redirects]]
+from = "/services/neck-pain-physiotherapy"
+to = "/services/orthopaedic-physiotherapy"
+status = 301
+
+[[redirects]]
+from = "/services/shoulder-pain-physiotherapy"
+to = "/services/orthopaedic-physiotherapy"
+status = 301
+
+[[redirects]]
+from = "/services/balance-and-fall-prevention"
+to = "/services/geriatric-physiotherapy"
+status = 301
+
+[[redirects]]
+from = "/services/posture-correction-ergonomics"
+to = "/services/orthopaedic-physiotherapy"
+status = 301
+
+[[redirects]]
+from = "/admin/*"
+to = "/admin/index.html"
+status = 200
 
 [[headers]]
-  for = "/*"
-  [headers.values]
-    X-Content-Type-Options = "nosniff"
-    X-Frame-Options = "DENY"
-    Referrer-Policy = "strict-origin-when-cross-origin"
+for = "/*"
+[headers.values]
+X-Content-Type-Options = "nosniff"
+X-Frame-Options = "DENY"
+Referrer-Policy = "strict-origin-when-cross-origin"
+Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+Content-Security-Policy = "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self'; frame-src https://www.youtube-nocookie.com; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'; upgrade-insecure-requests"
