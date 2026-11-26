@@ -1,1 +1,8 @@
-/public/
+node_modules/
+dist/
+.env
+.env.*
+*.tsbuildinfo
+
+# Local Netlify folder
+.netlify
